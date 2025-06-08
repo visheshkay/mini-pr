@@ -1,0 +1,5 @@
+pandas
+flask
+tf-keras
+spacy
+flask_cors

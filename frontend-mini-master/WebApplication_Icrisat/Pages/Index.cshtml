@@ -1,0 +1,359 @@
+﻿@page "/"
+@model IndexModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "ICRISAT Accession Search";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap4.min.css" />
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container-wrapper {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 15px;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .response {
+            margin-top: 30px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .search-summary {
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .ai-disclaimer {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+
+        .ai-disclaimer h6 {
+            color: #856404;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        #resultsTable {
+            width: 100% !important;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            margin-bottom: 10px;
+        }
+
+        .dt-buttons {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="container">
+            <h1>AI-Powered Germplasm Accession Search</h1>
+
+            <form method="post" onsubmit="showSpinner()">
+                <div class="form-group">
+                    <label asp-for="UserInput"><h5>Enter Query:</h5></label>
+                    <input type="text" class="form-control" asp-for="UserInput" placeholder="Type something..." value="@Model.LastSearchQuery" />
+                </div>
+                <button type="submit" class="btn btn-success">Search</button>
+
+                <div id="spinner" style="display: none; margin-top: 1rem;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </form>
+
+            @if (!string.IsNullOrEmpty(Model.LastSearchQuery))
+            {
+                <div class="search-summary">
+                    Search results for: <strong>@Model.LastSearchQuery</strong>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.TableDataJson))
+            {
+                <div class="ai-disclaimer">
+                    <h6>⚠️ AI-Generated Results Disclaimer</h6>
+                    <p><strong>The results produced by AI are created by Artificial Intelligence (AI) tools. We cannot guarantee the accuracy, completeness, or timeliness of the information provided. Any actions taken based on this content are at your own risk.</strong></p>
+                </div>
+
+                <div class="table-container">
+                    <div class="mb-3">
+                        <button id="exportCsvBtn" class="btn btn-primary" onclick="exportToCSV()" style="display: none;">
+                            <i class="fas fa-download"></i> Export to CSV
+                        </button>
+                    </div>
+                    <table id="resultsTable" class="table table-striped table-bordered" style="width:100%">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.ResponseMessage) && string.IsNullOrEmpty(Model.TableDataJson))
+            {
+                <div class="response">
+                    @Html.Raw(Model.ResponseMessage)
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+
+    <!-- Required JS Libraries - Load in correct order -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- DataTables Core + Bootstrap Integration -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- DataTables Buttons -->
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+    <script>
+        function showSpinner() {
+            document.getElementById("spinner").style.display = "block";
+        }
+
+        let tableData = [];
+        let tableColumns = [];
+
+        function exportToCSV() {
+            if (tableData.length === 0 || tableColumns.length === 0) {
+                alert('No data available to export');
+                return;
+            }
+
+            // Create CSV content
+            let csvContent = '';
+            
+            // Add headers
+            csvContent += tableColumns.map(col => `"${col.title}"`).join(',') + '\n';
+            
+            // Add data rows
+            tableData.forEach(row => {
+                const csvRow = tableColumns.map(col => {
+                    const cellData = row[col.data] != null ? row[col.data].toString() : '';
+                    // Escape quotes and wrap in quotes if contains comma or quote
+                    const escapedData = cellData.replace(/"/g, '""');
+                    return `"${escapedData}"`;
+                }).join(',');
+                csvContent += csvRow + '\n';
+            });
+
+            // Create and download file
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'search_results.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function initializeDataTable() {
+            // Check if we have table data
+            @if (!string.IsNullOrEmpty(Model.TableDataJson))
+            {
+                <text>
+                try {
+                    const rawJson = @Html.Raw(JsonSerializer.Serialize(Model.TableDataJson));
+                    
+                    if (!rawJson) {
+                        return;
+                    }
+
+                    const parsed = JSON.parse(rawJson);
+                    
+                    let columns = [];
+                    let data = [];
+
+                    if (parsed.columns && parsed.data) {
+                        columns = parsed.columns.map(col => ({
+                            title: col,
+                            data: col,
+                            render: function(data, type, row) {
+                                return data != null ? data : '';
+                            }
+                        }));
+                        data = parsed.data;
+                    } else if (Array.isArray(parsed) && parsed.length > 0) {
+                        columns = Object.keys(parsed[0]).map(key => ({
+                            title: key,
+                            data: key,
+                            render: function(data, type, row) {
+                                return data != null ? data : '';
+                            }
+                        }));
+                        data = parsed;
+                    }
+
+                    if (columns.length === 0 || data.length === 0) {
+                        $('#resultsTable').html('<tbody><tr><td colspan="100%">No data available</td></tr></tbody>');
+                        return;
+                    }
+
+                    // Store data globally for CSV export
+                    tableColumns = columns;
+                    tableData = data;
+                    
+                    // Show export button
+                    $('#exportCsvBtn').show();
+
+                    // Check if DataTables is actually available
+                    if (typeof $.fn.DataTable === 'undefined') {
+                        createBasicTable(columns, data);
+                        return;
+                    }
+
+                    // Check if DataTable is already initialized and destroy it
+                    if ($.fn.DataTable.isDataTable('#resultsTable')) {
+                        $('#resultsTable').DataTable().destroy();
+                    }
+
+                    // Initialize DataTable
+                    $('#resultsTable').DataTable({
+                        data: data,
+                        columns: columns,
+                        responsive: true,
+                        pageLength: 25,
+                        dom: 'Bfrtip',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                        language: {
+                            emptyTable: "No data available in table",
+                            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                            infoEmpty: "Showing 0 to 0 of 0 entries",
+                            lengthMenu: "Show _MENU_ entries",
+                            search: "Search:",
+                            paginate: {
+                                first: "First",
+                                last: "Last",
+                                next: "Next",
+                                previous: "Previous"
+                            }
+                        }
+                    });
+
+                } catch (error) {
+                    // Fallback to basic table
+                    try {
+                        const parsed = JSON.parse(@Html.Raw(JsonSerializer.Serialize(Model.TableDataJson)));
+                        if (parsed.columns && parsed.data) {
+                            tableColumns = parsed.columns.map(col => ({title: col, data: col}));
+                            tableData = parsed.data;
+                            $('#exportCsvBtn').show();
+                            createBasicTable(tableColumns, tableData);
+                        }
+                    } catch (fallbackError) {
+                        $('#resultsTable').html('<tbody><tr><td colspan="100%">Error loading table data</td></tr></tbody>');
+                    }
+                }
+                </text>
+            }
+        }
+
+        function createBasicTable(columns, data) {
+            // Create table header
+            let headerHtml = '<thead><tr>';
+            columns.forEach(col => {
+                headerHtml += `<th>${col.title}</th>`;  
+            });
+            headerHtml += '</tr></thead>';
+            
+            // Create table body
+            let bodyHtml = '<tbody>';
+            data.forEach(row => {
+                bodyHtml += '<tr>';
+                columns.forEach(col => {
+                    const cellData = row[col.data] != null ? row[col.data] : '';
+                    bodyHtml += `<td>${cellData}</td>`;
+                });
+                bodyHtml += '</tr>';
+            });
+            bodyHtml += '</tbody>';
+            
+            $('#resultsTable').html(headerHtml + bodyHtml);
+        }
+
+        // Initialize when document is ready
+        $(document).ready(function () {
+            setTimeout(initializeDataTable, 100);
+        });
+
+        // Fallback: try again after window load
+        $(window).on('load', function() {
+            if ($('#resultsTable tbody tr').length === 0) {
+                setTimeout(initializeDataTable, 200);
+            }
+        });
+    </script>
+</body>
+</html>

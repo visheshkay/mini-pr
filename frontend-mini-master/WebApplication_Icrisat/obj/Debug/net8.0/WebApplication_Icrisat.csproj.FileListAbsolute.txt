@@ -1,0 +1,213 @@
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.GeneratedMSBuildEditorConfig.editorconfig
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfoInputs.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfo.cs
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.CoreCompileInputs.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.MvcApplicationPartsAssemblyInfo.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cs
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.Development.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.staticwebassets.runtime.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.exe
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.deps.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.runtimeconfig.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.dll
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.pdb
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/bin/Debug/net8.0/Newtonsoft.Json.dll
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.AssemblyReference.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.build.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.development.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.WebApplication_Icrisat.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.build.WebApplication_Icrisat.props
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication_Icrisat.props
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.WebApplication_Icrisat.props
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.pack.json
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/bundle/WebApplication_Icrisat.styles.css
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/projectbundle/WebApplication_Icrisat.bundle.scp.css
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebAppli.E0714E6C.Up2Date
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.dll
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/refint/WebApplication_Icrisat.dll
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.pdb
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.genruntimeconfig.cache
+C:/Icrisat_NLP/WebApplication_Icrisat/WebApplication_Icrisat/obj/Debug/net8.0/ref/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.Development.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.staticwebassets.runtime.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.deps.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.runtimeconfig.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.pdb
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.AssemblyReference.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.GeneratedMSBuildEditorConfig.editorconfig
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfoInputs.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfo.cs
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.CoreCompileInputs.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.MvcApplicationPartsAssemblyInfo.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cs
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.build.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.development.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.WebApplication_Icrisat.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.build.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.pack.json
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/bundle/WebApplication_Icrisat.styles.css
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/projectbundle/WebApplication_Icrisat.bundle.scp.css
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebAppli.E0714E6C.Up2Date
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/refint/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.pdb
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.genruntimeconfig.cache
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/ref/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Azure.Core.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Azure.Identity.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Caching.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Identity.Client.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.SqlServer.Server.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.ClientModel.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Configuration.ConfigurationManager.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Formats.Asn1.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.IO.Pipelines.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Memory.Data.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Runtime.Caching.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Permissions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Text.Encodings.Web.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Text.Json.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Windows.Extensions.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
+/Users/visheshkondaveeti/Documents/MINI PROJECT/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.Development.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/appsettings.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.staticwebassets.runtime.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.deps.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.runtimeconfig.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/WebApplication_Icrisat.pdb
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Azure.Core.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Azure.Identity.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Caching.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Logging.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Identity.Client.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.SqlServer.Server.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.ClientModel.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Configuration.ConfigurationManager.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Formats.Asn1.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.IO.Pipelines.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Memory.Data.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Runtime.Caching.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Cryptography.ProtectedData.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Permissions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Text.Encodings.Web.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Text.Json.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Windows.Extensions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.AssemblyReference.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.GeneratedMSBuildEditorConfig.editorconfig
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfoInputs.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.AssemblyInfo.cs
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.csproj.CoreCompileInputs.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.MvcApplicationPartsAssemblyInfo.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.RazorAssemblyInfo.cs
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.build.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.development.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.WebApplication_Icrisat.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.build.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.WebApplication_Icrisat.props
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/staticwebassets.pack.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/bundle/WebApplication_Icrisat.styles.css
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/scopedcss/projectbundle/WebApplication_Icrisat.bundle.scp.css
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebAppli.E0714E6C.Up2Date
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/refint/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.pdb
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.genruntimeconfig.cache
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/ref/WebApplication_Icrisat.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/obj/Debug/net8.0/WebApplication_Icrisat.sourcelink.json
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Cryptography.Pkcs.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/System.Security.Cryptography.Xml.dll
+/Users/visheshkondaveeti/Documents/mini-pr-main/frontend-mini-master/WebApplication_Icrisat/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Security.Cryptography.Pkcs.dll
