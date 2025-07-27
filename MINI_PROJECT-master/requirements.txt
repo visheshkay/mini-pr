@@ -3,3 +3,4 @@ flask
 tf-keras
 spacy
 flask_cors
+pyodbc

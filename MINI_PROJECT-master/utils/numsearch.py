@@ -8,7 +8,7 @@ from .trait_loader import load_quantitative_trait_keywords
 # Trait-to-keyword mapping
 trait_mapping = load_quantitative_trait_keywords()
 
-df = pd.read_csv("models/MergedData.csv", low_memory=False)
+df = pd.read_csv("models/final_combined.csv", low_memory=False)
 # Load a SpaCy model (small English model)
 nlp_num = spacy.load("en_core_web_sm")
 

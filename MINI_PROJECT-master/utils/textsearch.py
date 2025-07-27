@@ -6,24 +6,82 @@ from .trait_loader import load_qualitative_trait_keywords
 
 trait_keywords = load_qualitative_trait_keywords()
 
-df = pd.read_csv("models/MergedData.csv", low_memory=False)
+df = pd.read_csv("models/final_combined.csv", low_memory=False)
     
-cols = ['ICRISAT accession identifier', 'Race', 'Plant pigmentation', 'Basal tillers number',
-       'Nodal tillering', 'Midrib color',
-       'Panicle compactness and shape', 'Glume color', 'Glume covering',
-       'Seed color', 'Seed lustre', 'Seed subcoat', 'Endosperm texture', 'Thresability',
-       'Shoot fly-rainy', 'Shoot fly-postrainy',  'Stem borer', 'Anthracnose',
-       'Grain mold', 'Leaf blight', 'Rust', 'Strigol control','Season of harvest', 'Site of rejuvenation',
-       'Date of storage', 'Location',  'No. of Seeds', 'Type of container',
-       'Containers',  'Date tested',
-       'MT_status', 'Duplicate status', 'Seed health status',
-       'Accession identifier', 'Crop', 'DOI', 'Alternate accession identifier',
-       'Local name', 'Genus', 'Species', 'Spauthor', 'Subtaxa', 'Subtauthor',
-       'Cultivar name', 'Biological status', 'Collecting source',
-       'Donor cooperator code', 'Donor country', 'Acquisition Date',
-       'Collection Date', 'Country Source', 'Province', 'Collection site',
-       'Latitude', 'Longitude', 'Elevation', 'FAO in trust', 'Core',
-       'Mini core']
+cols = ['ICRISAT accession identifier',
+ 'Race',
+ 'Plant pigmentation',
+ 'Basal tillers number',
+ 'Nodal tillering',
+ 'Midrib color',
+ 'Panicle compactness and shape',
+ 'Glume color',
+ 'Glume covering',
+ 'Seed color',
+ 'Seed lustre',
+ 'Seed subcoat',
+ 'Endosperm texture',
+ 'Thresability',
+ 'Shoot fly-rainy',
+ 'Shoot fly-postrainy',
+ 'Stem borer',
+ 'Anthracnose',
+ 'Grain mold',
+ 'Leaf blight',
+ 'Rust',
+ 'Strigol control',
+ 'Season of harvest',
+ 'Site of rejuvenation',
+ 'Date of storage',
+ 'Location',
+ 'No. of Seeds',
+ 'Type of container',
+ 'Containers',
+ 'Date tested',
+ 'MT_status',
+ 'Duplicate status',
+ 'Seed health status',
+ 'Accession identifier',
+ 'Crop',
+ 'DOI',
+ 'Alternate accession identifier',
+ 'Local name',
+ 'Genus',
+ 'Species',
+ 'Spauthor',
+ 'Subtaxa',
+ 'Subtauthor',
+ 'Cultivar name',
+ 'Biological status',
+ 'Collecting source',
+ 'Donor cooperator code',
+ 'Donor country',
+ 'Acquisition Date',
+ 'Collection Date',
+ 'Country Source',
+ 'Province',
+ 'Collection site',
+ 'Latitude',
+ 'Longitude',
+ 'Elevation',
+ 'FAO in trust',
+ 'Core',
+ 'Mini core',
+ 'Remarks',
+ 'Growth habit',
+ 'Flower color',
+ 'Dots on seed coat',
+ 'Seed shape',
+ 'Seed surface',
+ 'Ascochyta blight',
+ 'Colletotrichum blight',
+ 'Botrytis grey mold',
+ 'Pod borer',
+ 'Year of Characterization',
+ 'Genotype / Sequencing info',
+ 'SPAUTHOR',
+ 'SUBTAXA',
+ 'SUBTAUTHOR']
         
 unique_values = {col: df[col].unique().tolist() for col in cols}
 del unique_values['Collection site']
@@ -39,10 +97,10 @@ allowed_values = {
     col: set(str(v).lower() for v in vals if pd.notna(v))
     for col, vals in unique_values.items()
 }
-
+print(allowed_values['Seed color'])
 del unique_values['Glume color']
+del unique_values['Flower color']
 del unique_values['Midrib color']
-del unique_values['Seed color']
 del unique_values['Country Source']
 del unique_values['Donor country']
 del unique_values['Latitude']
@@ -51,6 +109,13 @@ del unique_values['Leaf blight']
 del unique_values['Rust']
 del unique_values['Anthracnose']
 del unique_values['Grain mold']
+del unique_values['Remarks']
+del unique_values['Botrytis grey mold'] #'Botrytis grey mold': 'susceptible', 'Stem borer': 'susceptible', 'Colletotrichum blight': 'susceptible', 'Ascochyta blight': 'susceptible'
+del unique_values['Pod borer']
+del unique_values['Stem borer']
+del unique_values['Ascochyta blight']
+del unique_values['Colletotrichum blight']
+
 
 all_cols = set(unique_values) | set(trait_keywords)
 
@@ -84,7 +149,7 @@ def extract_traits(query):
     for match_id, start, end in matches:
         col = nlp.vocab.strings[match_id]
         span = doc[start:end].text
-        if span in allowed_values.get(col, ()):
+        if span in allowed_values.get(col, ()) and col not in traits:
             # this span *is* a real value for that column
             traits[col] = span
 
@@ -97,6 +162,7 @@ def extract_traits(query):
         # print(col, span)
         cont = ''
         if span not in allowed_values.get(col, ()):
+            
             # that must have been a synonym; look immediately after it
             # for the next token that *is* in allowed_values[col]
             for tok in doc[end : end + 7]:  # look up to 5 tokens after
