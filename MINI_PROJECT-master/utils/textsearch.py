@@ -148,10 +148,22 @@ def extract_traits(query):
     # First pass: record exact‐value matches
     for match_id, start, end in matches:
         col = nlp.vocab.strings[match_id]
-        span = doc[start:end].text
-        if span in allowed_values.get(col, ()) and col not in traits:
-            # this span *is* a real value for that column
-            traits[col] = span
+        if col in traits:
+            continue
+
+        # Try to find the longest match starting at `start`
+        max_end = end
+        max_value = doc[start:end].text
+
+        for new_end in range(end + 1, min(len(doc) + 1, end + 5)):  # check next up to 4 tokens
+            candidate = doc[start:new_end].text.lower().strip()
+            if candidate in allowed_values.get(col, ()):
+                max_end = new_end
+                max_value = candidate
+
+        # Only accept if final candidate is in allowed values
+        if max_value in allowed_values.get(col, ()):
+            traits[col] = max_value
 
     # Second pass: handle synonyms that didn’t directly map to a value
     #     e.g. user said “pigmented” (synonym for Plant pigmentation)
@@ -159,6 +171,8 @@ def extract_traits(query):
     for match_id, start, end in matches:
         col = nlp.vocab.strings[match_id]
         span = doc[start:end].text
+        if col in traits:
+            continue
         # print(col, span)
         cont = ''
         if span not in allowed_values.get(col, ()):
