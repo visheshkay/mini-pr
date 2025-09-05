@@ -861,6 +861,15 @@
         "measurement year", "year of data collection", "data collection year",
         "year of phenotyping", "phenotyping year", "year of genotyping",
         "genotyping year", "year of breeding", "breeding year"
+    ],
+    "Plant height (cm)": ["plant height (cm)",
+        "plant height", "height measurement", "vertical growth", "plant stature",
+        "canopy height", "stem height", "height in centimeters", "plant elevation",
+        "height in cm", "plant vertical extent", "canopy elevation", "stem length",
+        "height assessment", "height evaluation", "height analysis", "height data",
+        "plant size", "canopy size", "stem size", "vertical dimension",
+        "plant growth measurement", "canopy growth measurement", "stem growth measurement",
+        "height parameter", "height trait", "height characteristic"
     ]
     }
     

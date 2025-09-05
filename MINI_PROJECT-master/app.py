@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import pickle
 import pandas as pd
+from collections import OrderedDict
 from utils.idsearch import find_accession_by_id
 from utils.numsearch import extract_num_traits
 from utils.textsearch import (
@@ -148,6 +149,8 @@ passport_columns_chickpea = [
     "Registered Date"
 ]
 
+default_ch_cols = ["Accession identifier", "Crop","Country Source","Species","Biological status","FAO in trust","Acquisition Date"]
+
 def run_query_for_db(query, values, conn_func):
     try:
         conn = conn_func()
@@ -157,7 +160,7 @@ def run_query_for_db(query, values, conn_func):
         columns = [column[0] for column in cursor.description]
         return [dict(zip(columns, row)) for row in rows]
     except Exception as e:
-        return {"error": str(e)}
+        return [{"error": str(e)}]
     finally:
         conn.close()
 
@@ -165,42 +168,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Load list and convert to DataFrame
-df = pd.read_csv("models/MergedData.csv", low_memory=False)
+df = pd.read_csv("models/final_combined.csv", low_memory=False)
 
-# def get_final_results(query):
-#     q=query.split(' ')
-#     query = query.lower()
-
-#     # Accession ID Based Shortlisting (Only return directly if 'IS' is present)
-#     accession_results = find_accession_by_id(query, df)
-#     is_accession_match = not isinstance(accession_results, str)
-
-#     if ("IS" in q or "ID" in q or "id" in q or "Id" in q or "Is" in q) and is_accession_match:
-#         return accession_results
-
-#     # Numeric Value Based Shortlisting
-#     numeric_traits = extract_num_traits(query,df)
-#     numeric_results = filter_accessions_by_ner(numeric_traits, df)
-
-#     # Textual Trait Based Shortlisting
-#     traits = extract_traits(query, df)
-#     filled_traits = fill_na_cols(traits, df)
-#     structured_text = generate_structured_text_for_NER(filled_traits)
-#     textual_results = test_text_search(structured_text, df, model, index)
-
-#     results_list = []
-#     if is_accession_match:
-#         results_list.append(accession_results)
-#     if not numeric_results.empty:
-#         results_list.append(numeric_results)
-#     if not textual_results.empty:
-#         results_list.append(textual_results)
-
-#     if results_list:
-#         final_results = pd.concat(results_list).drop_duplicates(subset=["ICRISAT accession identifier"])
-#         return final_results
-
-#     return pd.DataFrame()  # Return empty DataFrame if nothing matches
 
 def build_condition(column, operator, value):
     if operator == "equal_to":
@@ -214,86 +183,7 @@ def build_condition(column, operator, value):
     else:
         raise ValueError("Unsupported operator")
 
-# def get_final_results(query):
-#     # q = query.split(' ')
-#     query = query.lower()
 
-#     # --- Step 1: Get all types of results ---
-
-#     # Accession ID Based Shortlisting (Only return directly if 'IS' is present)
-#     accession_results = find_accession_by_id(query,df)
-#     # Check if the result is a correct accession id or not after query from SQL
-#     is_accession_match = not isinstance(accession_results, str)  # Check if valid DataFrame result
-
-
-#     if ("is" in query or "id" in query or "identifier" in query) and is_accession_match:
-#         return accession_results.to_dict(orient='records')
-
-#     quantitative = extract_num_traits(query)
-
-#     qualitative = extract_traits(query)
-
-#     char_conditions = []
-#     char_values = []
-#     pass_conditions = []
-#     pass_values = []
-
-#     for column, val in qualitative.items():
-#         if column in characterisation_columns:
-#             char_conditions.append(f"c.[{column}] = ?")
-#             char_values.append(val)
-#         elif column in passport_columns:
-#             pass_conditions.append(f"p.[{column}] = ?")
-#             pass_values.append(val)
-
-#     for column, info in quantitative.items():
-#         try:
-#             condition_str, vals = build_condition(column, info["operator"], info["value"])
-#             if column in characterisation_columns:
-#                 char_conditions.append(f"c.{condition_str}")
-#                 char_values.extend(vals)
-#             elif column in passport_columns:
-#                 pass_conditions.append(f"p.{condition_str}")
-#                 pass_values.extend(vals)
-#         except Exception as e:
-#             return jsonify({"error": str(e)}), 400
-
-#     where_clause = ""
-#     final_values = []
-
-#     if char_conditions or pass_conditions:
-#         where_clause = "WHERE "
-#         all_conditions = []
-
-#         if char_conditions:
-#             all_conditions.extend(char_conditions)
-#             final_values.extend(char_values)
-
-#         if pass_conditions:
-#             all_conditions.extend(pass_conditions)
-#             final_values.extend(pass_values)
-
-#         where_clause += " AND ".join(all_conditions)
-
-#     query = f"""
-#         SELECT TOP 100 *
-#         FROM [dbo].[Characterization] c
-#         JOIN [dbo].[Passport] p
-#         ON c.[ICRISAT accession identifier] = p.[ICRISAT accession identifier]
-#         {where_clause}
-#     """
-#     try:
-#         conn = get_connection()
-#         cursor = conn.cursor()
-#         cursor.execute(query, tuple(final_values))
-#         rows = cursor.fetchall()
-#         columns = [column[0] for column in cursor.description]
-#         results = [dict(zip(columns, row)) for row in rows]
-#         return results if results else "No results found"
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-#     finally:
-#         conn.close()
 
 def get_final_results(query):
     # q = query.split(' ')
@@ -372,10 +262,11 @@ def get_final_results(query):
             return None, None, None  # Skip this DB
 
         select_clause = []
+        select_clause.extend([f"p.[{col}]" for col in default_ch_cols])
         if char_columns:
             select_clause.extend([f"c.[{col}]" for col in char_columns])
         if pass_columns:
-            select_clause.extend([f"p.[{col}]" for col in pass_columns])
+            select_clause.extend([f"p.[{col}]" for col in pass_columns if col not in default_ch_cols])
         if not select_clause:
             select_clause = ["c.[ICRISAT accession identifier]", "p.[ICRISAT accession identifier]"]
 
@@ -415,6 +306,7 @@ def get_final_results(query):
             ON c.[ICRISAT accession identifier] = p.[ICRISAT accession identifier]
             {where_clause}
         """
+        print(query)
         return query, final_values, conn_func
 
     # Run for Sorghum
@@ -434,6 +326,9 @@ def get_final_results(query):
     )
     if(query_c and values_c and conn_func_c):
         results_c = run_query_for_db(query_c, values_c, conn_func_c) if query_c else []
+
+    print(results_s)
+
 
     final_results = (results_s or []) + (results_c or [])
 
@@ -526,7 +421,7 @@ def search():
     query = request.json.get("query", "")
     results = get_final_results(query)
 
-    return jsonify({"results":results if results else "No results found"})
+    return jsonify({"count": len(results) if isinstance(results, list) else 0,"results":results if results else "No results found"})
 
 
 if __name__ == "__main__":

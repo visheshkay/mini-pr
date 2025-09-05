@@ -15,7 +15,7 @@ def find_accession_by_id(query, df):
         results = df[df["ICRISAT accession identifier"] == accession_id] 
         # Check if results are not empty
         if not results.empty:
-            return results[['ICRISAT accession identifier','Plant pigmentation','Seed color','Country Source']]
+            return results[["ICRISAT accession identifier","Accession identifier", "Crop","Country Source","Species","Biological status","FAO in trust","Acquisition Date"]]
         else:
             return f"No matching accession found for the ID: {accession_id}"
     else:

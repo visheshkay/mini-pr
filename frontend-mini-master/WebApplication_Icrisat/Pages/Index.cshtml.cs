@@ -18,6 +18,8 @@ public class AccessionData
 
 public class SearchResponse
 {
+    [JsonProperty("count")] 
+    public int Count { get; set; }
     [JsonProperty("results")]
     public List<AccessionData> Results { get; set; } = new();
 
@@ -58,6 +60,7 @@ public class IndexModel : PageModel
     public string? LastSearchQuery { get; set; }
     public string? TableDataJson { get; set; }
     public string? DebugInfo { get; set; }
+    public int ResultCount { get; set; } 
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -85,9 +88,13 @@ public class IndexModel : PageModel
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
 
+                var searchResponse = JsonConvert.DeserializeObject<SearchResponse>(jsonString); 
+                ResultCount = searchResponse?.Count ?? 0;
+
                 HttpContext.Session.SetString("RawResponse", jsonString);
                 HttpContext.Session.SetString("AllData", jsonString);
                 HttpContext.Session.SetString("LastSearchQuery", UserInput);
+                HttpContext.Session.SetInt32("ResultCount", ResultCount);
 
                 return RedirectToPage();
             }
@@ -108,6 +115,7 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         LastSearchQuery = HttpContext.Session.GetString("LastSearchQuery");
+        ResultCount = HttpContext.Session.GetInt32("ResultCount") ?? 0; 
         var json = HttpContext.Session.GetString("AllData");
 
         if (string.IsNullOrEmpty(json))
@@ -137,6 +145,11 @@ public class IndexModel : PageModel
             {
                 JObject jsonObj = (JObject)parsedToken;
                 DebugInfo += $"\nObject keys: {string.Join(", ", jsonObj.Properties().Select(p => p.Name))}";
+
+                if (jsonObj["count"] != null && jsonObj["count"].Type == JTokenType.Integer) 
+                {
+                    ResultCount = jsonObj["count"].Value<int>(); 
+                }
 
                 if (jsonObj["results"] is JArray resultsArray)
                 {
@@ -218,8 +231,8 @@ public class IndexModel : PageModel
             NullValueHandling = NullValueHandling.Include,
             DefaultValueHandling = DefaultValueHandling.Include
         });
-
-        ResponseMessage = "Data loaded successfully.";
+        
+        ResponseMessage = $"Data loaded successfully. Found {ResultCount} results.";
     }
 
     private AccessionData ConvertToAccessionData(JObject item)
