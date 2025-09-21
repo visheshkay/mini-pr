@@ -8,6 +8,7 @@ from utils.textsearch import (
     extract_traits,
 )
 from flask_cors import CORS
+from subset import extract_traits_with_ranges, extract_num_range
 import pyodbc
 
 def get_connection_sorghum():
@@ -422,6 +423,33 @@ def search():
     results = get_final_results(query)
 
     return jsonify({"count": len(results) if isinstance(results, list) else 0,"results":results if results else "No results found"})
+
+@app.route('/extract-traits', methods=['POST'])
+def extract_traits():
+    """
+    Extract traits and their values from the given text.
+    Returns a JSON response with the extracted traits.
+    """
+    data = request.get_json()
+    if not data or 'text' not in data:
+        return jsonify({'error': 'No text provided'}), 400
+    
+    text = data['text']
+    traits = extract_traits_with_ranges(text)
+    return jsonify({'traits': traits})
+
+@app.route('/test-range', methods=['POST'])
+def test_range():
+    """
+    Test endpoint to debug range extraction
+    """
+    data = request.get_json()
+    if not data or 'text' not in data:
+        return jsonify({'error': 'No text provided'}), 400
+    
+    text = data['text']
+    result = extract_num_range(text)
+    return jsonify({'input': text, 'result': result})
 
 
 if __name__ == "__main__":

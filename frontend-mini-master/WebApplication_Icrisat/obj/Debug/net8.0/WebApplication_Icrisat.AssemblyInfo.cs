@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApplication_Icrisat")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7dd071ae9dc1cb9de45d1e36fb18e63953e7a2ae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4055e35c94b88f69f95384c19ad337705c9e29a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApplication_Icrisat")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApplication_Icrisat")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
