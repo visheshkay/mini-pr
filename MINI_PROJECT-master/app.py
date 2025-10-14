@@ -163,7 +163,8 @@ def run_query_for_db(query, values, conn_func):
     except Exception as e:
         return [{"error": str(e)}]
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 app = Flask(__name__)
 CORS(app)
@@ -425,7 +426,7 @@ def search():
     return jsonify({"count": len(results) if isinstance(results, list) else 0,"results":results if results else "No results found"})
 
 @app.route('/extract-traits', methods=['POST'])
-def extract_traits():
+def extract_traits_for_subsetting():
     """
     Extract traits and their values from the given text.
     Returns a JSON response with the extracted traits.

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - ICRISAT Tool</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">ICRISAT Tool</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Chatbot" asp-action="Index">Chatbot</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Subsetting" asp-controller="Weather" asp-action="Index">Subsetting Tool</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="footer bg-light text-center py-3">
+        <p class="mb-0">© 2025 ICRISAT | Powered by .NET</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,975 @@
+@page "/subsetting"
+@model IndexModel
+@{
+    ViewData["Title"] = "ICRISAT Subsetting Tool Page";
+}
+
+<div class="page-container">
+    <div class="content-wrapper">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h2>Apply Filters</h2>
+                <form method="post">
+                    <div class="manual-filters">
+                        <h3>Manual Filters</h3>
+                        <div class="weather-form">
+                            <!-- Temperature Range -->
+                            <div class="range_container">
+                                <label>Temperature Range (°C)</label>
+                                <div class="sliders_control">
+                                    <input id="tempFromSlider" type="range" name="TempMin" value="@Model.TempMin" min="0" max="50" />
+                                    <input id="tempToSlider" type="range" name="TempMax" value="@Model.TempMax" min="0" max="50" />
+                                </div>
+                                <div class="form_control">
+                                    <div class="form_control_container">
+                                        <div class="form_control_container__time">Min</div>
+                                        <input class="form_control_container__time__input" type="number" name="TempMin" id="tempFromInput" value="@Model.TempMin" min="0" max="50" />
+                                    </div>
+                                    <div class="form_control_container">
+                                        <div class="form_control_container__time">Max</div>
+                                        <input class="form_control_container__time__input" type="number" name="TempMax" id="tempToInput" value="@Model.TempMax" min="0" max="50" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Humidity Range -->
+                            <div class="range_container">
+                                <label>Humidity Range (%)</label>
+                                <div class="sliders_control">
+                                    <input id="humidityFromSlider" type="range" name="HumidityMin" value="@Model.HumidityMin" min="0" max="100" />
+                                    <input id="humidityToSlider" type="range" name="HumidityMax" value="@Model.HumidityMax" min="0" max="100" />
+                                </div>
+                                <div class="form_control">
+                                    <div class="form_control_container">
+                                        <div class="form_control_container__time">Min</div>
+                                        <input class="form_control_container__time__input" type="number" name="HumidityMin" id="humidityFromInput" value="@Model.HumidityMin" min="0" max="100" />
+                                    </div>
+                                    <div class="form_control_container">
+                                        <div class="form_control_container__time">Max</div>
+                                        <input class="form_control_container__time__input" type="number" name="HumidityMax" id="humidityToInput" value="@Model.HumidityMax" min="0" max="100" />
+                                    </div>
+                                </div>
+                            </div>
+                                    <!-- Rainfall Range -->
+        <div class="range_container">
+            <label>Rainfall Range (mm)</label>
+            <div class="sliders_control">
+                <input id="rainFromSlider" type="range" name="RainfallMin" value="@Model.RainfallMin" min="0" max="1300" />
+                <input id="rainToSlider" type="range" name="RainfallMax" value="@Model.RainfallMax" min="0" max="1300" />
+            </div>
+            <div class="form_control">
+                <div class="form_control_container">
+                    <div class="form_control_container__time">Min</div>
+                    <input class="form_control_container__time__input" type="number" name="RainfallMin" id="rainFromInput" value="@Model.RainfallMin" min="0" max="1300" />
+                </div>
+                <div class="form_control_container">
+                    <div class="form_control_container__time">Max</div>
+                    <input class="form_control_container__time__input" type="number" name="RainfallMax" id="rainToInput" value="@Model.RainfallMax" min="0" max="1300" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- Crop Filter -->
+        <div class="crop_filter_container">
+            <label for="cropFilter">Crop Type:</label>
+            <select id="cropFilter" name="CropFilter" class="crop_dropdown">
+                <option value="All" selected="@(Model.CropFilter == "All")">All Crops</option>
+                <option value="Sorghum" selected="@(Model.CropFilter == "Sorghum")">Sorghum</option>
+                <option value="Chickpea" selected="@(Model.CropFilter == "Chickpea")">Chickpea</option>
+            </select>
+        </div>
+
+        <!-- Page Size -->
+        <div class="crop_filter_container">
+            <label for="pageSize">Results per page:</label>
+            <select id="pageSize" name="PageSize" class="crop_dropdown">
+                <option value="50" selected="@(Model.PageSize == 50)">50</option>
+                <option value="100" selected="@(Model.PageSize == 100)">100</option>
+                <option value="250" selected="@(Model.PageSize == 250)">250</option>
+                <option value="500" selected="@(Model.PageSize == 500)">500</option>
+            </select>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button">Submit</button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="LastQuery" name="LastQuery" value="@Model.LastQuery" />
+                </form>
+            </div>
+            <div class="chatbot-section">
+                <h3>Chatbot Assistant</h3>
+                <div class="chatbot-input">
+                    <textarea id="chatbotInput" class="chatbot-textarea" placeholder="Ask about plant characteristics...">@Model.LastQuery</textarea>
+                    <div class="chatbot-buttons">
+                        <button id="chatbotSubmit" class="chatbot-button">Ask</button>
+                        <button id="clearQuery" class="clear-query-button">Clear</button>
+                    </div>
+                </div>
+                <div id="chatbotResponse" class="chatbot-response"></div>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <h2>Passport Data Results</h2>
+            <div class="query-summary">
+                <div class="summary-card">
+                    <div class="summary-title">Your query</div>
+                    <div class="summary-text">@(!string.IsNullOrWhiteSpace(Model.LastQuery) ? Model.LastQuery : "No query asked yet.")</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-title">Applied filters</div>
+                    <ul class="summary-list">
+                        <li><strong>Crop</strong>: @(string.IsNullOrEmpty(Model.CropFilter) ? "All" : Model.CropFilter)</li>
+                        <li><strong>Temperature</strong>: @Model.TempMin to @Model.TempMax °C</li>
+                        <li><strong>Humidity</strong>: @Model.HumidityMin to @Model.HumidityMax %</li>
+                        <li><strong>Rainfall</strong>: @Model.RainfallMin to @Model.RainfallMax mm</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="debug-info">Debug: Number of passport records received: @Model.PassportResults?.Count ?? 0</p>
+            @if (Model.PassportResults != null && Model.PassportResults.Any())
+            {
+                <p>Showing page @Model.PageIndex of @Model.TotalPages (Total Records: @Model.TotalRecords)</p>
+                <div class="export-section">
+                    <button type="button" id="exportToExcel" class="export-button">
+                        <i class="fas fa-file-excel"></i> Export to Excel
+                    </button>
+                </div>
+                <div class="table-scroll-top" id="topScroll"><div></div></div>
+                <div class="table-scroll-x" id="mainScroll">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ICRISAT Accession Identifier</th>
+                            <th>Accession Identifier</th>
+                            <th>Crop</th>
+                            <th>DOI</th>
+                            <th>Genus</th>
+                            <th>Species</th>
+                            @if (Model.PassportResults.Any(p => p.Latitude.HasValue || p.Longitude.HasValue))
+                            {
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                            }
+                            <th>Temperature (°C)</th>
+                            <th>Humidity (%)</th>
+                            <th>Rainfall (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var passport in Model.PassportResults)
+                        {
+                            <tr>
+                                <td>@passport.ICRISATAccessionIdentifier</td>
+                                <td>@passport.AccessionIdentifier</td>
+                                <td>@passport.Crop</td>
+                                <td>@passport.DOI</td>
+                                <td>@passport.Genus</td>
+                                <td>@passport.Species</td>
+                                @if (Model.PassportResults.Any(p => p.Latitude.HasValue || p.Longitude.HasValue))
+                                {
+                                    <td>@passport.Latitude</td>
+                                    <td>@passport.Longitude</td>
+                                }
+                                <td>@passport.Temperature</td>
+                                <td>@passport.Humidity</td>
+                                <td>@passport.Rainfall</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+                <div class="pagination">
+                            @if (Model.PageIndex > 1)
+        {
+            <a asp-page="Index" asp-route-pageIndex="@(Model.PageIndex - 1)" asp-route-TempMin="@Model.TempMin" asp-route-TempMax="@Model.TempMax" asp-route-HumidityMin="@Model.HumidityMin" asp-route-HumidityMax="@Model.HumidityMax" asp-route-RainfallMin="@Model.RainfallMin" asp-route-RainfallMax="@Model.RainfallMax" asp-route-CropFilter="@Model.CropFilter" asp-route-LastQuery="@Model.LastQuery" asp-route-PageSize="@Model.PageSize" class="btn btn-secondary">Previous</a>
+        }
+        @if (Model.PageIndex < Model.TotalPages)
+        {
+            <a asp-page="Index" asp-route-pageIndex="@(Model.PageIndex + 1)" asp-route-TempMin="@Model.TempMin" asp-route-TempMax="@Model.TempMax" asp-route-HumidityMin="@Model.HumidityMin" asp-route-HumidityMax="@Model.HumidityMax" asp-route-RainfallMin="@Model.RainfallMin" asp-route-RainfallMax="@Model.RainfallMax" asp-route-CropFilter="@Model.CropFilter" asp-route-LastQuery="@Model.LastQuery" asp-route-PageSize="@Model.PageSize" class="btn btn-secondary">Next</a>
+        }
+                </div>
+            }
+            else
+            {
+                <p class="no-data">No passport data available.</p>
+            }
+        </main>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e9f7ef 0%, #d6f5ea 100%);
+        min-height: 100vh;
+        margin: 0;
+    }
+    .page-container {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: #23423b;
+    }
+    .content-wrapper {
+        display: flex;
+        min-height: calc(100vh - 0px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        border-radius: 22px;
+        margin: 32px auto;
+        max-width: 1400px;
+        background: #ffffff;
+        overflow: hidden;
+    }
+    /* Sidebar */
+    .sidebar {
+        width: 27%;
+        background: linear-gradient(135deg, #2eb872 0%, #8fd3b8 100%);
+        padding: 32px 24px 24px 24px;
+        border-right: 1px solid #e0eafc;
+        color: #073b2b;
+        min-width: 320px;
+    }
+    .filter-section h2 {
+        font-size: 22px;
+        margin-bottom: 18px;
+        color: #073b2b;
+        letter-spacing: 1px;
+    }
+    .manual-filters h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #0a664b;
+    }
+    .chatbot-section {
+        margin-top: 32px;
+        padding: 18px;
+        background: rgba(255,255,255,0.7);
+        border-radius: 14px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .chatbot-section h3 {
+        margin-bottom: 10px;
+        color: #0a664b;
+    }
+    .chatbot-input {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .chatbot-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .chatbot-button {
+        background: linear-gradient(135deg, #2eb872, #1e8b57);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(46, 184, 114, 0.3);
+    }
+    .clear-query-button {
+        background: linear-gradient(135deg, #6c757d, #495057);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+    }
+    .chatbot-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(46, 184, 114, 0.4);
+    }
+    .clear-query-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(108, 117, 125, 0.4);
+    }
+    .chatbot-textarea {
+        width: 100%;
+        min-height: 80px;
+        padding: 10px;
+        border: 1px solid #b6e2cf;
+        border-radius: 10px;
+        resize: vertical;
+        font-size: 15px;
+    }
+    .chatbot-response {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #ecf7f1;
+        border-radius: 10px;
+        display: none;
+        color: #23423b;
+    }
+    .chatbot-response.error {
+        background-color: #ffecec;
+        color: #a12c2c;
+    }
+    .chatbot-response.success {
+        background-color: #daf5ea;
+        color: #0a664b;
+    }
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-top: 24px;
+        background: linear-gradient(135deg, #2eb872, #16a085);
+        color: #fff;
+        border: none;
+        border-radius: 16px;
+        font-size: 17px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(22,160,133,.25);
+        transition: transform .05s ease, box-shadow .2s ease;
+    }
+    .submit-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(22,160,133,.3);
+    }
+    /* Main Content */
+    .main-content {
+        width: 73%;
+        padding: 40px 36px 36px 36px;
+        background: linear-gradient(135deg, #f5fffb 0%, #ecfbf6 100%);
+        min-height: 100vh;
+    }
+    .main-content h2 {
+        font-size: 26px;
+        text-align: left;
+        margin-bottom: 18px;
+        color: #0a664b;
+        letter-spacing: 1px;
+    }
+    .debug-info {
+        color: #6c8c84;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    .no-data {
+        color: #d9534f;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 40px;
+    }
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: #ffffff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .table-scroll-x {
+        width: 100%;
+        overflow-x: auto;
+    }
+    .table-scroll-top {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: 16px;
+        margin-bottom: 6px;
+    }
+    .table-scroll-top > div {
+        height: 1px;
+    }
+    .data-table th, .data-table td {
+        border: none;
+        padding: 12px 10px;
+        text-align: left;
+        word-wrap: break-word;
+        max-width: 180px;
+        font-size: 15px;
+    }
+    .data-table th {
+        background: linear-gradient(135deg, #2eb872, #16a085);
+        color: #ffffff;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+    .data-table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    .data-table tbody tr:nth-child(even) {
+        background: #f3fbf7;
+    }
+    .data-table tbody tr:nth-child(odd) {
+        background: #eefaf5;
+    }
+    .data-table tbody tr:hover {
+        background: #e5fbf0;
+        transition: background 0.2s;
+    }
+    .pagination {
+        margin-top: 18px;
+        text-align: right;
+    }
+    .btn {
+        padding: 8px 18px;
+        margin-right: 7px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(135deg, #2eb872, #16a085);
+        border: none;
+        border-radius: 20px;
+        font-size: 15px;
+        font-weight: bold;
+        box-shadow: 0 6px 16px rgba(22,160,133,.25);
+        transition: transform .05s ease, box-shadow .2s ease;
+    }
+    .btn-secondary {
+        background: linear-gradient(135deg, #78a69a, #6b8f87);
+        border: none;
+    }
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(22,160,133,.3);
+        text-decoration: none;
+    }
+    .btn-secondary:hover {
+        background: linear-gradient(135deg, #6b8f87, #5e7e78);
+    }
+    /* Range Slider Styles */
+    .weather-form {
+        margin-top: 20px;
+    }
+    .range_container {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+    }
+    .sliders_control {
+        position: relative;
+        min-height: 50px;
+    }
+    .form_control {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        color: #635a5a;
+    }
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: all;
+        width: 24px;
+        height: 24px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #C6C6C6;
+        cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+        -webkit-appearance: none;
+        pointer-events: all;
+        width: 24px;
+        height: 24px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #C6C6C6;
+        cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+        background: #f7f7f7;
+    }
+    input[type=range]::-webkit-slider-thumb:active {
+        box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    }
+    input[type="number"] {
+        color: #8a8383;
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        padding: 4px 8px;
+        background: #f8fafc;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        opacity: 1;
+    }
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        background-color: #C6C6C6;
+        pointer-events: none;
+    }
+    #tempFromSlider, #rainFromSlider, #humidityFromSlider {
+        height: 0;
+        z-index: 1;
+    }
+    .export-section {
+        margin: 24px 0 0 0;
+        text-align: right;
+    }
+    .export-button {
+        background: linear-gradient(135deg, #27ae60, #2ecc71);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.3s;
+        font-weight: bold;
+        box-shadow: 0 6px 16px rgba(39, 174, 96, .25);
+    }
+    .export-button:hover {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+    }
+    .fas {
+        font-size: 18px;
+    }
+    /* Query Summary Styles */
+    .query-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin: 10px 0 16px 0;
+    }
+    .summary-card {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 14px 16px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        border: 1px solid #e9eff6;
+    }
+    .summary-title {
+        font-weight: 700;
+        color: #1e90ff;
+        margin-bottom: 8px;
+        letter-spacing: .3px;
+    }
+    .summary-text {
+        color: #334155;
+        line-height: 1.45;
+    }
+    .summary-list {
+        margin: 0;
+        padding-left: 18px;
+        color: #334155;
+    }
+    .summary-list li {
+        margin: 4px 0;
+    }
+</style>
+
+<script>
+    // Generic control functions
+    function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
+        const [from, to] = getParsed(fromInput, toInput);
+        const min = parseFloat(fromInput.min);
+        const max = parseFloat(fromInput.max);
+
+        let clampedFrom = Math.max(min, Math.min(max, from));
+        if (isNaN(clampedFrom)) clampedFrom = min;
+
+        fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+        if (clampedFrom > to) {
+            fromSlider.value = to;
+            fromInput.value = to;
+        } else {
+            fromSlider.value = clampedFrom;
+            fromInput.value = clampedFrom;
+        }
+    }
+
+    function controlToInput(toSlider, fromInput, toInput, controlSlider) {
+        const [from, to] = getParsed(fromInput, toInput);
+        const min = parseFloat(toInput.min);
+        const max = parseFloat(toInput.max);
+
+        let clampedTo = Math.max(min, Math.min(max, to));
+        if (isNaN(clampedTo)) clampedTo = max;
+
+        fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+        setToggleAccessible(toInput);
+        if (from <= clampedTo) {
+            toSlider.value = clampedTo;
+            toInput.value = clampedTo;
+        } else {
+            toInput.value = from;
+        }
+    }
+
+    function controlFromSlider(fromSlider, toSlider, fromInput) {
+        const [from, to] = getParsed(fromSlider, toSlider);
+        const min = parseFloat(fromSlider.min);
+        const max = parseFloat(fromSlider.max);
+
+        let clampedFrom = Math.max(min, Math.min(max, from));
+        if (isNaN(clampedFrom)) clampedFrom = min;
+
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+        if (clampedFrom > to) {
+            fromSlider.value = to;
+            fromInput.value = to;
+        } else {
+            fromInput.value = clampedFrom;
+        }
+    }
+
+    function controlToSlider(fromSlider, toSlider, toInput) {
+        const [from, to] = getParsed(fromSlider, toSlider);
+        const min = parseFloat(toSlider.min);
+        const max = parseFloat(toSlider.max);
+
+        let clampedTo = Math.max(min, Math.min(max, to));
+        if (isNaN(clampedTo)) clampedTo = max;
+
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+        setToggleAccessible(toSlider);
+        if (from <= clampedTo) {
+            toSlider.value = clampedTo;
+            toInput.value = clampedTo;
+        } else {
+            toInput.value = from;
+            toSlider.value = from;
+        }
+    }
+
+    function getParsed(currentFrom, currentTo) {
+        const from = parseFloat(currentFrom.value);
+        const to = parseFloat(currentTo.value);
+        return [from, to];
+    }
+
+    function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+        const rangeDistance = to.max - to.min;
+        const fromPosition = from.value - to.min;
+        const toPosition = to.value - to.min;
+        controlSlider.style.background = `linear-gradient(
+                    to right,
+                    ${sliderColor} 0%,
+                    ${sliderColor} ${(fromPosition / rangeDistance) * 100}%,
+                    ${rangeColor} ${(fromPosition / rangeDistance) * 100}%,
+                    ${rangeColor} ${(toPosition / rangeDistance) * 100}%,
+                    ${sliderColor} ${(toPosition / rangeDistance) * 100}%,
+                    ${sliderColor} 100%)`;
+    }
+
+    function setToggleAccessible(currentTarget) {
+        const toSlider = currentTarget.parentElement.parentElement.querySelector('[id$="ToSlider"]');
+        if (Number(currentTarget.value) <= 0) {
+            toSlider.style.zIndex = 2;
+        } else {
+            toSlider.style.zIndex = 0;
+        }
+    }
+
+    // Initialize Temperature
+    const tempFromSlider = document.querySelector('#tempFromSlider');
+    const tempToSlider = document.querySelector('#tempToSlider');
+    const tempFromInput = document.querySelector('#tempFromInput');
+    const tempToInput = document.querySelector('#tempToInput');
+    fillSlider(tempFromSlider, tempToSlider, '#C6C6C6', '#25daa5', tempToSlider);
+    setToggleAccessible(tempToSlider);
+    tempFromSlider.oninput = () => controlFromSlider(tempFromSlider, tempToSlider, tempFromInput);
+    tempToSlider.oninput = () => controlToSlider(tempFromSlider, tempToSlider, tempToInput);
+    tempFromInput.oninput = () => controlFromInput(tempFromSlider, tempFromInput, tempToInput, tempToSlider);
+    tempToInput.oninput = () => controlToInput(tempToSlider, tempFromInput, tempToInput, tempToSlider);
+
+    // Initialize Humidity
+    const humidityFromSlider = document.querySelector('#humidityFromSlider');
+    const humidityToSlider = document.querySelector('#humidityToSlider');
+    const humidityFromInput = document.querySelector('#humidityFromInput');
+    const humidityToInput = document.querySelector('#humidityToInput');
+    fillSlider(humidityFromSlider, humidityToSlider, '#C6C6C6', '#25daa5', humidityToSlider);
+    setToggleAccessible(humidityToSlider);
+    humidityFromSlider.oninput = () => controlFromSlider(humidityFromSlider, humidityToSlider, humidityFromInput);
+    humidityToSlider.oninput = () => controlToSlider(humidityFromSlider, humidityToSlider, humidityToInput);
+    humidityFromInput.oninput = () => controlFromInput(humidityFromSlider, humidityFromInput, humidityToInput, humidityToSlider);
+    humidityToInput.oninput = () => controlToInput(humidityToSlider, humidityFromInput, humidityToInput, humidityToSlider);
+
+    // Initialize Rainfall
+    const rainFromSlider = document.querySelector('#rainFromSlider');
+    const rainToSlider = document.querySelector('#rainToSlider');
+    const rainFromInput = document.querySelector('#rainFromInput');
+    const rainToInput = document.querySelector('#rainToInput');
+    fillSlider(rainFromSlider, rainToSlider, '#C6C6C6', '#25daa5', rainToSlider);
+    setToggleAccessible(rainToSlider);
+    rainFromSlider.oninput = () => controlFromSlider(rainFromSlider, rainToSlider, rainFromInput);
+    rainToSlider.oninput = () => controlToSlider(rainFromSlider, rainToSlider, rainToInput);
+    rainFromInput.oninput = () => controlFromInput(rainFromSlider, rainFromInput, rainToInput, rainToSlider);
+    rainToInput.oninput = () => controlToInput(rainToSlider, rainFromInput, rainToInput, rainToSlider);
+
+    // Clear query when manual filters are submitted
+    document.querySelector('form').addEventListener('submit', function() {
+        // Clear the LastQuery field when manual filters are submitted
+        document.getElementById('LastQuery').value = '';
+        // Also clear the chatbot input and response
+        document.getElementById('chatbotInput').value = '';
+        document.getElementById('chatbotResponse').textContent = '';
+        document.getElementById('chatbotResponse').className = 'chatbot-response';
+        document.getElementById('chatbotResponse').style.display = 'none';
+    });
+
+    // Chatbot functionality
+    document.getElementById('chatbotSubmit').addEventListener('click', async function() {
+        const input = document.getElementById('chatbotInput').value;
+        const responseDiv = document.getElementById('chatbotResponse');
+        
+        if (!input.trim()) {
+            responseDiv.textContent = 'Please enter your question.';
+            responseDiv.className = 'chatbot-response error';
+            responseDiv.style.display = 'block';
+            return;
+        }
+
+        try {
+            // Show loading state
+            responseDiv.textContent = 'Processing your request...';
+            responseDiv.className = 'chatbot-response';
+            responseDiv.style.display = 'block';
+
+            const response = await fetch('http://127.0.0.1:5000/extract-traits', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: input
+                })
+            });
+
+            console.log('Response status:', response.status);
+
+            if (!response.ok) {
+                if (response.status === 415) {
+                    throw new Error('Server does not support the request content type. Please check API specifications.');
+                }
+                const errorText = await response.text();
+                console.error('Error response:', errorText);
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            let data;
+            try {
+                const textData = await response.text();
+                console.log('Raw response:', textData);
+                data = JSON.parse(textData);
+            } catch (error) {
+                console.error('JSON parsing error:', error);
+                throw new Error('Invalid JSON response from server');
+            }
+
+            console.log('Parsed data:', data);
+
+            if (data && data.traits) {
+                // Reset all parameters to full ranges first
+                document.getElementById('tempFromInput').value = '0';
+                document.getElementById('tempToInput').value = '50';
+                document.getElementById('tempFromSlider').value = '0';
+                document.getElementById('tempToSlider').value = '50';
+
+                document.getElementById('humidityFromInput').value = '0';
+                document.getElementById('humidityToInput').value = '100';
+                document.getElementById('humidityFromSlider').value = '0';
+                document.getElementById('humidityToSlider').value = '100';
+
+                document.getElementById('rainFromInput').value = '0';
+                document.getElementById('rainToInput').value = '1300';
+                document.getElementById('rainFromSlider').value = '0';
+                document.getElementById('rainToSlider').value = '1300';
+
+                document.getElementById('cropFilter').value = 'All';
+
+                // Update temperature values if present
+                if (data.traits.temperature) {
+                    let tempMin = data.traits.temperature.min;
+                    let tempMax = data.traits.temperature.max;
+                    
+                    // Handle keyword-based ranges
+                    if (data.traits.temperature.keyword === "min") {
+                        tempMin = data.traits.temperature.min;
+                        tempMax = 50; // Full range max
+                    } else if (data.traits.temperature.keyword === "max") {
+                        tempMin = 0; // Full range min
+                        tempMax = data.traits.temperature.max;
+                    }
+                    
+                    document.getElementById('tempFromInput').value = tempMin;
+                    document.getElementById('tempToInput').value = tempMax;
+                    document.getElementById('tempFromSlider').value = tempMin;
+                    document.getElementById('tempToSlider').value = tempMax;
+                }
+
+                // Update humidity values if present
+                if (data.traits.humidity) {
+                    let humidityMin = data.traits.humidity.min;
+                    let humidityMax = data.traits.humidity.max;
+                    
+                    // Handle keyword-based ranges
+                    if (data.traits.humidity.keyword === "min") {
+                        humidityMin = data.traits.humidity.min;
+                        humidityMax = 100; // Full range max
+                    } else if (data.traits.humidity.keyword === "max") {
+                        humidityMin = 0; // Full range min
+                        humidityMax = data.traits.humidity.max;
+                    }
+                    
+                    document.getElementById('humidityFromInput').value = humidityMin;
+                    document.getElementById('humidityToInput').value = humidityMax;
+                    document.getElementById('humidityFromSlider').value = humidityMin;
+                    document.getElementById('humidityToSlider').value = humidityMax;
+                }
+
+                // Update rainfall values if present
+                if (data.traits.rainfall) {
+                    let rainMin = data.traits.rainfall.min;
+                    let rainMax = data.traits.rainfall.max;
+                    
+                    // Handle keyword-based ranges
+                    if (data.traits.rainfall.keyword === "min") {
+                        rainMin = data.traits.rainfall.min;
+                        rainMax = 1300; // Full range max
+                    } else if (data.traits.rainfall.keyword === "max") {
+                        rainMin = 0; // Full range min
+                        rainMax = data.traits.rainfall.max;
+                    }
+                    
+                    document.getElementById('rainFromInput').value = rainMin;
+                    document.getElementById('rainToInput').value = rainMax;
+                    document.getElementById('rainFromSlider').value = rainMin;
+                    document.getElementById('rainToSlider').value = rainMax;
+                }
+
+                // Update crop filter if present
+                if (data.traits.crop) {
+                    const cropValue = data.traits.crop.charAt(0).toUpperCase() + data.traits.crop.slice(1);
+                    document.getElementById('cropFilter').value = cropValue;
+                }
+
+                // Update all slider visuals
+                controlFromSlider(document.getElementById('tempFromSlider'), document.getElementById('tempToSlider'), document.getElementById('tempFromInput'));
+                controlToSlider(document.getElementById('tempFromSlider'), document.getElementById('tempToSlider'), document.getElementById('tempToInput'));
+                controlFromSlider(document.getElementById('humidityFromSlider'), document.getElementById('humidityToSlider'), document.getElementById('humidityFromInput'));
+                controlToSlider(document.getElementById('humidityFromSlider'), document.getElementById('humidityToSlider'), document.getElementById('humidityToInput'));
+                controlFromSlider(document.getElementById('rainFromSlider'), document.getElementById('rainToSlider'), document.getElementById('rainFromInput'));
+                controlToSlider(document.getElementById('rainFromSlider'), document.getElementById('rainToSlider'), document.getElementById('rainToInput'));
+
+                // Persist last query for display
+                document.getElementById('LastQuery').value = input;
+
+                // Show success message
+                responseDiv.textContent = 'Filters updated successfully!';
+                responseDiv.className = 'chatbot-response success';
+
+                // Automatically submit the form to update the results and summary
+                document.querySelector('form').submit();
+            } else {
+                throw new Error('Invalid response format from server');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            responseDiv.textContent = 'Error: ' + error.message;
+            responseDiv.className = 'chatbot-response error';
+            responseDiv.style.display = 'block';
+        }
+    });
+
+    // Clear Query functionality
+    document.getElementById('clearQuery').addEventListener('click', function() {
+        document.getElementById('chatbotInput').value = '';
+        document.getElementById('LastQuery').value = '';
+        document.getElementById('chatbotResponse').textContent = '';
+        document.getElementById('chatbotResponse').className = 'chatbot-response';
+        document.getElementById('chatbotResponse').style.display = 'none';
+    });
+
+    // Excel Export functionality
+    document.getElementById('exportToExcel').addEventListener('click', async function() {
+        try {
+            const response = await fetch('/Index?handler=ExportToExcel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+                body: JSON.stringify({
+                    TempMin: document.getElementById('tempFromInput').value,
+                    TempMax: document.getElementById('tempToInput').value,
+                    HumidityMin: document.getElementById('humidityFromInput').value,
+                    HumidityMax: document.getElementById('humidityToInput').value,
+                    RainfallMin: document.getElementById('rainFromInput').value,
+                    RainfallMax: document.getElementById('rainToInput').value,
+                    CropFilter: document.getElementById('cropFilter').value
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // Get the filename from the Content-Disposition header if available
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = 'ICRISAT_Data_Export.xlsx';
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            // Convert the response to blob
+            const blob = await response.blob();
+            
+            // Create a temporary link and trigger download
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            a.remove();
+        } catch (error) {
+            console.error('Export error:', error);
+            alert('Failed to export data: ' + error.message);
+        }
+    });
+
+    // Sync top scrollbar with main table horizontal scroll
+    (function syncScrollbars(){
+        const top = document.getElementById('topScroll');
+        const main = document.getElementById('mainScroll');
+        if (!top || !main) return;
+        const inner = top.firstElementChild;
+        const updateWidth = () => { inner.style.width = main.scrollWidth + 'px'; };
+        updateWidth();
+        if (window.ResizeObserver) {
+            new ResizeObserver(updateWidth).observe(main);
+        } else {
+            window.addEventListener('resize', updateWidth);
+        }
+        top.addEventListener('scroll', () => { main.scrollLeft = top.scrollLeft; });
+        main.addEventListener('scroll', () => { top.scrollLeft = main.scrollLeft; });
+    })();
+  </script>
